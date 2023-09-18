@@ -1,0 +1,76 @@
+1. Node.js란?
+ 1) ~ 1995년 이전 : HTML + CSS  ➡️  웹사이트 개발
+    ~ 1995년 이후 : HTML + CSS + JavaScript ➡️ 웹사이트 개발
+
+  2) JavaScript
+    - Netscape에서 개발한 live script > Mocha > JavaScript 12월 발표
+
+  3) 브라우저에서 지원하는 자바스크립트 엔진
+      - 사파리(Safari) : JavaScript Core
+      - InternetExplorer(MS) : Chakara
+      - Firefox : Spider Monkey
+      - Chrome : V8 엔진 (JIT Just-in-Time comilation)
+      - Edage(MS) :  Chakara ➡️ 2021년도에 V8 엔진을 탑재함
+
+  4) 2009년 Ryan Dahl(라이언 달)이 Node.js를 발표
+     Deno : TypeScript 런타입 최초 개발자
+     (deno : V8 자바스크립트 엔진 및 러스트 프로그래밍 언어를 기반으로 하는 자바스크립트 및 타입스크립트용 런타임)
+     -- JavaScript everywhere  --
+
+  5) Node.js는 
+    '크롬의 V8 엔진을 탑재하고 있는 자바스크립트 런타임 환경이다'
+     'JavaScript code outside a web browser'
+  
+
+  6) Browser vs Node.js ( 엔진은 같으나 제공되어지는 API가 다르다 )
+     Browser ➡️ 동적인 웹 애플리케이션 구현이 가능
+                ----------------------------------
+                  Web API - Windows, Document, Ajax, JSON... 
+    
+    Node.js ➡️  서버와 서버간의 랜더링, 백엔드 서버 구현,
+                프론트 엔드 개발 등...
+                ----------------------------------
+                  Node API 
+
+                io 작업 많거나
+                데이터 작고 데이터 처리 빨리 일어나야할 때 node.js 사용 추천한다
+
+  
+2. Node.js를 어떻게 공부할 것인가?
+  1) Node의 구조를 정확히 이해하고 실행방식을 기억한다 
+  2) Node에서 제공하는 API를 잘 사용할 줄 알아야 한다 
+     ( API 사용하는 설치 버전에 맞춰서 찾아 실행 )
+     API는 자바스클비트 문법으로 작성되었으므로, 문법을 정확히 익히도록 한다
+  3) 개발을 편리하게 지원해주는 프레임워크에 대해서 익힌다
+     Node.js ➡️ Express, Rust
+     Web API ( 브라우저 ) ➡️ React, vue
+
+
+3. Node.js 특징 4가지
+  1) JavaScript Runtime 
+     - V8 엔진 탑재( 자바스크립트 해석 가능한 런타입 환경 구축) ➡️ EcmaScript6, Open Source, Node API ...
+     ( v8 같은 엔진이라서 같은 식으로 구현 )
+
+  2) Single Thread 
+     - Process(Multi Thread) vs Thread 
+
+  3) Non-Blocking(비동기적) IO (Input / Output)
+  4) Event - Driven
+
+
+  4. 실행환경 만들기
+      1) Node.js 설치 : node.org ( node 버전 꼭 확인하고 진행해야한다 )
+      2) 터미널 툴 설치
+         - 윈도우용 터미널 : https://cmder.app/ 
+         - 맥용 터미널 :  https://iterm2.com/
+      3) 개발 툴 설치 : VSCode 등..
+      4) Git 설치 및 GitHub 연동
+
+
+   5. REPL
+      R : Read / E : Eval / P : Print / L : Loop ( 읽고 처리하고 계산하고 화면에 찍고 반복한다 )
+
+   
+   6. console 로그에 대한 API 검색 및 활용 - 2.console.js 참고
+   7. this 정리 (this가 global, object 구분) - 3.this.js 참고 
+   // 함수 global ﹒ 클래스 자기 자신을 나타내는 객체다
