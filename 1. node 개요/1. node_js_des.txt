@@ -72,5 +72,14 @@
 
    
    6. console 로그에 대한 API 검색 및 활용 - 2.console.js 참고
+   
    7. this 정리 (this가 global, object 구분) - 3.this.js 참고 
    // 함수 global ﹒ 클래스 자기 자신을 나타내는 객체다
+
+   8. export / require - node﹒Blocking 방식
+      export / import - JavaScript﹒Non-blocking 방식 ( node에서 바로 사용시 blocking으로 처리하려고 해서 에러 )
+   
+   // node에서 export import 사용하지 못하는 것은?
+      node는 blocking 방식 사용이 기본이지만 es6의 export는 non-blocking 방식이기 때문에!
+
+   9. os - 운영체제 정보 ( Os )
