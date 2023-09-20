@@ -82,4 +82,10 @@
    // node에서 export import 사용하지 못하는 것은?
       node는 blocking 방식 사용이 기본이지만 es6의 export는 non-blocking 방식이기 때문에!
 
-   9. os - 운영체제 정보 ( Os )
+   9. Node API 
+      1) os - 운영체제 정보 ( Os )
+      2) Process 
+      3) Path
+      4) FileSystem
+      5) Stream & Buffer
+
