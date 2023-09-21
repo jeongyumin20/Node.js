@@ -22,6 +22,7 @@ console.log(path.dirname(__dirname));
 console.log(path.extname(__filename)); // 확장자
 
 // parse
+// 파일이 가지고 있는 현재 정보들을 객체로 리턴 그 안에 있는 확장자만 꺼내 쓸 수 있다
 const parsed = path.parse(__filename); // 오브젝트 형태로 출력
 console.log(parsed);
 parsed.root;
@@ -32,7 +33,7 @@ console.log(str);
 
 // normalize
 console.log(path.normalize('./folder//////sub'));
-// 외부에서 입력을 받아서 사용을 할 때  슬래시나 역슬래시 많이 받아서 사용할 때 정상적인 표준화된 패스 형태로 만들어 주는 작업
+// 외부에서 입력을 받아서 사용을 할 때 슬래시나 역슬래시 많이 받아서 사용할 때 정상적인 표준화된 패스 형태로 만들어 주는 작업
 
 // join
 console.log(__dirname + '/' + 'image'); // 접합연산자 윈도우와 맥 호환 문제로 권장 x
