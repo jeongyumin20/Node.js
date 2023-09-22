@@ -19,7 +19,6 @@ const process = require('process');
 const fs = require('fs');
 const fsp = require('fs').promises;
 const path = require('path');
-const { log } = require('console');
 
 // 현재 경로 리턴해주는 api 적용해보자
 // 윈도우 'c://dev/node/code/15.mpm' 이렇게 적으면 안된다 ( 윈도우는 역슬래시이므로 이렇게 픽스해서 주면 실행하는 os마다 경로값 가져올 때 다르다는 메세지 뜰 수 있다 )

@@ -47,7 +47,9 @@ function fileCheck(files) {
 function checkVideo(file) {
   const fileExt = path.extname(file);
   if (fileExt == '.mp4') return true;
-  // fileExt == '.mp4' ? true : false;
+  // return fileExt == '.mp4' ? true : false;
+  // 삼항연산자 사용시 return을 붙여야 호출한 곳으로 값이 넘어간다. 변수로 받지 않아도 되는 것은 앞에 const fileExt가 존재해서
+  // 추후 다시 복습시 물어본대로 실행해서 되는지 보기
 }
 
 function checkPng(file) {
