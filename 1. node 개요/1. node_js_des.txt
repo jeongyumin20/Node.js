@@ -97,3 +97,118 @@
       - NPX : 다운로드 되어 저장하지 않고 바로 실행
       - yarn : 페이스북에서 라이브러리 커뮤니티로 npm에서 제기되는 문제점을 해결하고자 만듦
                React에서 주로 사용되며 NPM과 호환이 됨
+
+   11. HTTP/HTTPS
+
+      1) HTTP/HTTPS
+         - Hypertext Transfer Protocol
+          (request - response protocol)
+         
+         ** <HTTP> **
+
+                  request(URL: [ http://www.naver.com/index.do])
+          client ------------------------------------------------> server
+                  <---------------------------------------------
+                               response(HTML)
+                                    |
+                        데이터를 가로채는 경우 다수 발생
+                                 
+
+         ** <HTTPS> **  Hypertext Transfer Protocol Secure
+
+                  request(URL: [ https://www.naver.com/index.do])
+          client ------------------------------------------------> server
+                  <---------------------------------------------
+                               response(HTML) 
+                  : SSL, TSL 등 공개키를 사용한 암호화되어 전송
+                                    |
+                        데이터를 가로채는 경우 감소
+          
+
+      2) Status Codes
+         https://developer.mozilla.org/en-US/docs/WEb/HTTP/Status 
+         - 서버가 클라이언트가 요청한 처리 상태를 
+            숫자 (3자리 숫자, 5개 범위)로 전송하는 코드
+            
+            1xx : Informational
+               100(Continue) - 요청이 정상적이며, 계속 진행 가능 : 아무 문제 없다는 것
+               102(Processing) - 요청한 것을 아직 처리 중
+                  
+            2xx : Successful
+               200(OK) - 성공 메시지 
+               ( 우리가 promise 사용시 자바스크립트 엔진이 브라우저에 가서 성공했는지 프로미스객체가 대신 물어봄 ( url 가지고가서 ) 기다리다가 200이 찍히면 성공했다 판단해서 then 실행 갔는데 400대면 catch 쪽으로 와서 실행! )
+               201(Created) - 클라이언트가 요청한 리소스 생성이 성공함 ( GET 방식 x POST 방식만 가능 / 파일 업로드나 회원가입처럼 데이터 클 때 Post 방식으로 서버쪽에 요청할 수 있다? )
+               204(No Content) - 클라이언트 요청 처리 완료 정송할 컨텐츠는 없음
+
+            3xx : Redirection
+               301(Moved Permanentl1y) - 요청한 페이지가 영구적으로 다른 곳으로 이동
+               302(Found) - 요청한 페이지가 임시적으로 다른 곳으로 이동
+               303(See Other) - 302와 동일한 의미 단, GET 방식만 사용 가능
+
+            4xx : Client error
+               400(BAd Request) - 요청한 쿼리가 잘못된 경우 
+               ( http 요청시 사용하는 쿼리의 경우 https://www.naver.com/login.jsp?id=test : 쿼리는 get 메서드 방식에서만 사용 가능 )
+
+               401(Unauthorized) - 로그인 등 권한이 없는 클라이언트가 요청한 경우
+               403(Forbidden) - 로그인한 사용자이지만 특정한 일을 수행할 권한이 없음 ( 관리자가 보는 메뉴를 클릭 )
+               404(Not Found) - URL이 존재하지 않을 때
+               405(Method Not Allowed) - 요청한 기능이 허용되지 않을 때 ( GET으로 보냈는데 POST 방식이여야할 때)
+
+            5xx : Server error
+               500(Internal Server Error) -  서버에서 요청을 처리할 수 없는 경우 전송
+               502(Bad GateWay) -  중간에 서버 요청을 어떻게 처리해야 할지 모르는 경우 전송
+               503(Service Unavailable) - URL에서 요청한 특정한 처리를 하기 위한 준비가 아직 되지 않았을 때
+
+
+      3) Request
+         - URL : Uniform Resource Location ( 고유한 주소를 얻는다 )
+         
+         https://www.server.com:80/course/frontend/js/search?a=123
+         -----  ----------------- ------------------------- ------
+         protocol    hostname             pathname           query﹒querystring
+                  (80 기본으로 포트 생략 가능)                 (GET 방식에서만 사용 가능)
+
+         
+         - Method : 요청하는 방식 (GET/POST/PUT...)
+         https://developer.mozilla.org/en-US/docs/WEb/HTTP/Methods
+
+         GET - get : 서버에서 해당 리소스를 가져오고 싶을 때 
+         POST - created : URL이 가르키는 곳에 무엇인가를 생성하고 싶을 때 
+                          전송하는 데이터의 용량이 큰 경우.. 
+         PUT - replace : URL에 있는 데이터를 업데이트 하고 싶을 때
+         DELETE - delete : URL에 있는 데이터를 삭제하고 싶을 때 
+         PATCH - replace partially : 부분적으로 업데이트 하고 싶을 때 
+         HEAD - get without body : 데이터를 받지는 않고 HEAD만 받고 싶을 때
+         OPTIONS - all supported methods for URL 
+            : 해당 URL에서 사용 가능한 모든 메소드 옵션을 알고 싶을 때
+         TRACE - echoes the received request 
+            : 요청에 대한 서버의 반응 상태를 확인할 때 
+
+         [GET] - 200, 401, 403, 404, 405 ..
+         [POST] - 201, 401, 403, 404, 409 ..
+         [PUT/DELETE/PATCH] - 200, 204, 404, 405 ..
+         [HEAD/OPTIONS/TRACE] - 200, 401, 403, 404, 405 .. ( 반응 상태 정도만 체크? )
+
+         * GET/HEAD/OPTIONS/TRACE 메소드는 서버의 데이터를 읽기만 진행
+            POST/PUT/DELETE/PATCH 메소드는 데이터의 변경을 요청하는 메소드
+
+
+      4) HTTP Headers
+         - stateless Protocol : HTTP는 상태정보를 저장하지 않는 프로토콜이므로 
+                                서버에 대한 인증을 필요시 얻어야함
+
+         - Cookies & Session :  
+                        
+                        request(get): http://www.naver.com/login
+           Client -----------------------------------------------------> Server
+                  <----------------------------------------------------
+                              response : 로그인 화면 (HTML)
+
+
+                        requset(post) : 로그인 요청 ( id﹒pwd )
+          Client  ---------------------------------------------------->  Server + DB
+                  <-------------------------------------------  로그인 성공: Session(key0) | 서버(Session) 키 저장
+                URL + Session(key0) ---------------------------------->
+   
+   Cookies(Session(key0))
+    |---> 브라우저에 저장
