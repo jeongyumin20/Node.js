@@ -74,7 +74,7 @@ function isVideoFile(file) {
 // img 파일 여부 체크
 function isImageFile(file) {
   const fileObject = path.parse(file);
-  if (fileObject.ext == '.png' || fileObject.ext == '.jpg') return true; // true false는 blooean 값이므로 '' 로 타입을 바꾸면 안됨
+  if (fileObject.ext == '.png' || fileObject.ext == '.jpg') return true; // true false는 boolean 값이므로 '' 로 타입을 바꾸면 안됨
 }
 
 // 파일 이동
