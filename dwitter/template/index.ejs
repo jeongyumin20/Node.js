@@ -9,7 +9,7 @@
     <!-- header -->
     <h1>Dwitter</h1>
     <ul>
-      <li><a href="#">All Dwitter</a></li>
+      <li><a href="/dwitter">All Dwitter</a></li>
       <li><a href="#">My Dwitter</a></li>
       <li><a href="#">Login</a></li>
     </ul>
@@ -23,7 +23,7 @@
     </form>
 
     <!-- tweet list -->
-    <% dwitterList.forEach((dwitter) => { %>
+    <% renderList.forEach((dwitter) => { %>
     <div style="border: 1px solid gray; margin-top: 10px; width: 50%">
       <%= dwitter.pid %>
       <span style="float: right; cursor: pointer" onclick="remove('<%= dwitter.pid %>')">𝗑&nbsp;</span>
@@ -33,7 +33,7 @@
         src="https://lh3.google.com/u/0/ogw/AKPQZvz2HmNjcwAEPNQlku9rD9iZkhoLuN9oOZVOKW5U=s64-c-mo"
       />
       <span>[<%= dwitter.name %>]</span>
-      <span><a href="?id=<%= dwitter.id %>">@<%= dwitter.id %></a></span>
+      <span><a href="/dwitter/<%= dwitter.id %>">@<%= dwitter.id %></a></span>
       <span><%= dwitter.date %></span>
       <div><%= dwitter.content %></div>
 
@@ -93,7 +93,7 @@
           .finally();
       }
 
-      // update toggel
+      // update toggle
       function updateToggle(pid) {
         const updateForm = document.querySelector('#updateForm_' + pid);
         const contentText = document.querySelector('#content_' + pid);

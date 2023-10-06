@@ -12,8 +12,10 @@ router.use(express.urlencoded());
 // 1. GET : /dwitter  ➡️  All Dwitter List
 // 경로 /dwiiter 설정시 8080/dwitter/dwitter
 router.get('/', (req, res, next) => {
+  const renderList = dwitterList;
+
   // index.ejs(틀) + 동적 데이터
-  ejs.renderFile('./template/index.ejs', { dwitterList }).then(data => {
+  ejs.renderFile('./template/index.ejs', { renderList }).then(data => {
     res.end(data);
   });
 });
@@ -31,6 +33,26 @@ router.post('/', (req, res, next) => {
 
 // 3. GET : /dwitter/:id : My Dwitter List
 //          /dwitter?id=자신의 아이디
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id; // id 하나만 들어오니까 변수로 받고 많은 것은 {} 오브젝트로 맵핑해서 받는다
+  const renderList = dwitterList.filter(dwitter => dwitter.id === id);
+
+  // 랜더링 되어지는 경로
+  ejs.renderFile('./template/index.ejs', { renderList }).then(data => res.end(data));
+});
+
+// 내가 시도한 방식
+/* router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+
+  dwitterList = dwitterList.filter(dwitter => {
+    return dwitter.id === id;
+  });
+
+  ejs.renderFile('./template/index.ejs', { dwitterList }).then(data => {
+    res.end(data);
+  });
+}); */
 
 // 4. PUT : /dwitter/:id - My Dwitter update
 router.put('/', (req, res, next) => {
