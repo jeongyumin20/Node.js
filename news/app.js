@@ -6,7 +6,7 @@ import replyRouter from './router/reply.js';
 const app = express();
 
 // '/'도 가능
-// http://localhose:800/news : 현재 default 주소
+// http://localhost:8080/news : 현재 default 주소
 app.use('/news', newsRouter);
 app.use('/reply', replyRouter);
 

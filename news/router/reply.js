@@ -1,4 +1,7 @@
+// reply.js
+
 import express from 'express';
+import ejs from 'ejs';
 
 const router = express.Router();
 const replyList = [];
@@ -6,19 +9,18 @@ const replyList = [];
 router.use(express.json());
 router.use(express.urlencoded());
 
-/* 
-    댓글을 등록하는 기능 => POST 메소드, /reply
-    댓글등록을 누르면 여기서 받아야한다
-*/
+router.get('/:nid', (req, res, next) => {
+  const nid = req.params.nid;
+  const rlist = replyList.filter(reply => reply.nid === nid);
+  res.json(rlist);
+});
+
+/* 댓글 등록 버튼 데이터 처리 : post */
 router.post('/', (req, res, next) => {
   const { nid, replyContent } = req.body;
-
-  // console.log({ nid, replyContent });
-
-  replyList.push({ nid, replyContent });
-
-  console.log(replyList);
-  res.status(201).send('success~');
+  replyList.unshift({ nid, replyContent });
+  res.status(201).send('create success~'); // 성공 메세지 받고 싶으면 이렇게
+  // res.json(replyList); // 현재는 replyList를 받고 싶지만 이제 보내지 않아도 됨 get 방식에서 처리
 });
 
 export default router;

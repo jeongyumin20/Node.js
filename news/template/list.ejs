@@ -7,22 +7,23 @@
     <title>News</title>
   </head>
   <body>
+    <!-- header -->
     <h1>헤드라인 뉴스</h1>
     <hr />
     <div style="text-align: right">
       <button type="button" id="btnReg" onclick="regToggle()">뉴스 등록</button>
     </div>
+
     <!-- 뉴스 등록 form : toggle (이미지url, title, content ( 별도 처리 date nid ) -->
     <form action="/news/register" method="post" id="regForm" name="regForm" style="display: none">
       URL : <input type="text" id="url" name="url" placeholder="url" style="width: 70%" /> <br />
       Title : <input type="text" id="title" name="title" placeholder="title" style="width: 70%" /> <br />
-      Content : <textarea type="text" id="content" name="content" placeholder="content" style="width: 70%"></textarea>
-      <br />
+      Content : <textarea id="content" name="content" placeholder="content" style="width: 70%"></textarea> <br />
       <button type="submit">등록</button>
       <button type="reset">다시쓰기</button>
-      <!-- <textarea name="content" id="content" cols="20" rows="5"></textarea> -->
     </form>
 
+    <!-- 뉴스 content -->
     <ul>
       <!-- json객체 news 객체 반환을 받는다 -->
       <% newsList.forEach(news => { %>

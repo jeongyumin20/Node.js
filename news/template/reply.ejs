@@ -1,4 +1,5 @@
 <!-- reply.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,6 +8,52 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Reply Include 부분 확인</h1>
+    <h1>댓글</h1>
+    <hr />
+
+    <div id="replyForm">
+      <textarea name="replyContent" id="replyContent" style="width: 95%"></textarea> <br />
+      <button type="button" id="btnRegReply" onclick="regReply('<%= newsContent.nid %>')">등록 완료</button>
+    </div>
+
+    <!-- 댓글 리스트 동적 html -->
+    <ul id="replyList"></ul>
+
+    <script>
+      replyList('<%= newsContent.nid %>');
+
+      // ➡️ 맨처음 호출되는 리스트 출력 함수
+      function replyList(nid) {
+        // get 방식으로 nid 값을 넘긴 후 json 타입으로 리스트 가져오기
+        fetch('/reply/' + nid) //  ex /reply/299 -> /reply/:nid
+          .then(response => response.json()) // json으로 변환
+          .then(rlist => {
+            //alert(JSON.stringify(rlist));
+            const output = `
+            ${rlist.map(reply => `<li> ${reply.replyContent} </li>`).join('\n')}
+            `;
+            document.querySelector('#replyList').innerHTML = output;
+          })
+          .catch();
+        // 동적 HTML로 코드 출력
+      }
+
+      // ➡️ 댓글 등록하는 버튼 클릭 처리 함수
+      function regReply(nid) {
+        const replyContent = document.querySelector('#replyContent').value;
+
+        fetch('/reply', {
+          method: 'post',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ nid: nid, replyContent: replyContent }),
+        })
+          .then(response => {
+            if (response.status === 201) {
+              window.location.reload(); // reply 재호출 : replyList() 함수 실행
+            }
+          })
+          .catch();
+      }
+    </script>
   </body>
 </html>

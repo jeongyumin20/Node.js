@@ -8,6 +8,7 @@
     <title>news content</title>
   </head>
   <body>
+    <!-- news 본문 내용  -->
     <h1><%= newsContent.title %></h1>
     <div>
       <img src="<%= newsContent.url %>" width="90%" height="90%" alt="" />
@@ -17,17 +18,10 @@
       <a href="/news"><button type="button">리스트</button></a>
     </p>
 
-    <!-- 댓글  -->
-    <!--     <p>댓글</p>
-    <hr />
-    <div id="replyForm">
-      <textarea name="replyContent" id="replyContent" style="width: 100%"></textarea><br />
-      <button type="button" id="btnRegReply">등록완료</button>
-    </div> -->
-    <!-- <button type="button" id="btnRegReply" onclick="update('<%= newsContent.nid %>')">등록완료</button> -->
+    <!-- 댓글 section : include ejs 3버전 -->
+    <%- include('reply.ejs') %>
 
-    <%- include("reply") %>
-
+    <!-- include 하기 전에 버튼 클릭해서 사용하는 이벤트 방법 
     <script>
       const btnRegReply = document.querySelector('#btnRegReply');
       btnRegReply.addEventListener('click', e => {
@@ -42,18 +36,6 @@
           })
           .catch(console.error);
       });
-
-      /* 내 풀이 
-        function update(nid) {
-        const replyContent = document.querySelector('#replyContent').value;
-        fetch('/reply', {
-          method: 'post',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ nid: nid, replyContent: replyContent }),
-        })
-          .then(result => {})
-          .catch();
-      } */
-    </script>
+    </script> -->
   </body>
 </html>
