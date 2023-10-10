@@ -1,0 +1,173 @@
+<!-- list.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        padding: 30px;
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+        height: 40px;
+        margin-bottom: 30px;
+        border: 1px solid lightgray;
+        list-style: none;
+      }
+
+      li {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      li:not(:last-child) {
+        border-right: 1px solid rgb(195, 207, 219);
+      }
+
+      li:hover {
+        background-color: darkkhaki;
+        color: white;
+        border-left-color: white;
+        border-right-color: white;
+      }
+
+      .book_wrap {
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px solid lightgray;
+      }
+
+      .book_wrap div:first-child {
+        flex: 0 1 10%;
+        margin-right: 20px;
+      }
+
+      .book_wrap img {
+        width: 100%;
+      }
+
+      .bookList {
+        padding: 15px 0;
+      }
+
+      .book_comment {
+        font-size: 0.7rem;
+        color: lightgray;
+      }
+
+      .book_info,
+      .book_price {
+        display: flex;
+        align-items: center;
+      }
+
+      .book_info {
+        margin: 8px 0;
+        font-size: 0.9rem;
+      }
+
+      .book_info p,
+      .book_price p {
+        margin-right: 3px;
+      }
+
+      .book_date {
+        color: gray;
+      }
+
+      .book_price p:first-child {
+        font-weight: bolder;
+      }
+
+      .book_price p:last-child {
+        font-size: 0.7rem;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li onclick="bestSellerCategory('BestSeller', '1')">
+        <span class="text">종합</span>
+      </li>
+      <li onclick="bestSellerCategory('RealTimeBestSeller', '1')">
+        <span class="text">실시간</span>
+      </li>
+      <li onclick="bestSellerCategory('DayBestSeller', '1')">
+        <span class="text">일별</span>
+      </li>
+      <li onclick="bestSellerCategory('MonthWeekBestSeller', '1')">
+        <span class="text">월별/주말</span>
+      </li>
+      <li onclick="bestSellerCategory('HotPriceBestSeller', '1')">
+        <span class="text">특가</span>
+      </li>
+      <li onclick="bestSellerCategory('SteadySeller', '1')">
+        <span class="text">스테디셀러</span>
+      </li>
+    </ul>
+
+    <div id="list"></div>
+
+    <script>
+      bestSellerCategory('BestSeller', '1');
+
+      function bestSellerCategory(categoryName, page) {
+        const url = '/' + categoryName + '/' + page;
+        fetch(url)
+          .then(response => response.json())
+          .then(bestSellerList => {
+            // alert(JSON.stringify(bestSellerList));
+            const output = `
+            <h2 class="title">${bestSellerList.title}</h2>
+            
+            ${bestSellerList.list
+              .map(
+                book =>
+                  `
+                <div class="book_wrap">
+                  <div>
+                    <img src="${book.url}">
+                    </div>
+                  <div class="bookList">
+                    <b>${book.bname}</b>
+                    <p class="book_comment">${book.bname_comment}</p>
+                    <div class="book_info">
+                      <p>${book.author} 저 / ${book.translator} 역 |</p>
+                      <p class="book_pub">${book.publisher} |</p>
+                      <p class="book_date">${book.pdata}</p>
+                    </div>
+                    <div class="book_price">
+                      <p>${book.price}</p>
+                      <p>(${book.dc}% 할인)</p>
+                    </div>
+                  </div>
+                </div>
+
+              `
+              )
+              .join('\n')}
+            `;
+            document.querySelector('#list').innerHTML = output;
+          })
+          .catch();
+      }
+    </script>
+  </body>
+</html>
