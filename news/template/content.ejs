@@ -16,10 +16,29 @@
     <p><%= newsContent.content %></p>
     <p style="text-align: right">
       <a href="/news"><button type="button">리스트</button></a>
+      <button type="button" onclick="remove('<%= newsContent.nid %>')">삭제하기</button>
     </p>
 
     <!-- 댓글 section : include ejs 3버전 -->
     <%- include('reply.ejs') %>
+
+    <script>
+        function remove(nid) {
+          fetch('/news', { // news에서 지워야함
+            method: 'delete',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ nid: nid }),
+          })
+          .then(result => {
+            if (result.status === 204) {
+              alert('삭제 성공 ✌🏻');
+              window.location.href = 'http://127.0.0.1:8080/news';
+              // window.location.reload(); 뉴스 삭제인데 삭제해서 없어진 자기 자신 데이터 페이지를 찾으면 에러 
+            }
+          })
+          .catch(console.error);
+        }
+    </script>
 
     <!-- include 하기 전에 버튼 클릭해서 사용하는 이벤트 방법 
     <script>

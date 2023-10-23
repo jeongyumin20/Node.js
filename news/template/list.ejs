@@ -26,13 +26,13 @@
     <!-- 뉴스 content -->
     <ul>
       <!-- json객체 news 객체 반환을 받는다 -->
-      <% newsList.forEach(news => { %>
+      <% for(let i=0; i<list.length; i++) { %>
       <li style="list-style: none; border-bottom: 1px solid gray; height: 100px">
-        <img src="<%= news.url %>" width="70px" height="70px" style="float: left; margin-right: 10px" />
-        <p><a href="/news/<%=news.nid%>"><%= news.title %></a></p>
-        <p style="width: 75%; height: 45px; overflow: hidden"><%= news.content %></p>
+        <img src="<%= list[i].url %>" width="70px" height="70px" style="float: left; margin-right: 10px" />
+        <p><a href="/news/<%=list[i].nid%>"><%= list[i].title %></a></p>
+        <p style="width: 75%; height: 45px; overflow: hidden"><%= list[i].content %></p>
       </li>
-      <% }) %>
+      <% } %>
     </ul>
 
     <script>

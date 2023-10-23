@@ -2,6 +2,10 @@
 
 import express from 'express';
 import ejs from 'ejs';
+import dbConfig from '../db/database.js'
+
+const conn = dbConfig.init();
+dbConfig.connect(conn);
 
 const router = express.Router();
 const replyList = [];
@@ -11,16 +15,24 @@ router.use(express.urlencoded());
 
 router.get('/:nid', (req, res, next) => {
   const nid = req.params.nid;
-  const rlist = replyList.filter(reply => reply.nid === nid);
-  res.json(rlist);
+  const sql = 'select rid, content, nid, redate from news_reply where nid = ?';
+  conn.query(sql, nid, (err, rows, fields) => {
+    if(err) console.log(err)
+    else res.json(rows);
+  });
 });
 
 /* 댓글 등록 버튼 데이터 처리 : post */
 router.post('/', (req, res, next) => {
-  const { nid, replyContent } = req.body;
-  replyList.unshift({ nid, replyContent });
-  res.status(201).send('create success~'); // 성공 메세지 받고 싶으면 이렇게
-  // res.json(replyList); // 현재는 replyList를 받고 싶지만 이제 보내지 않아도 됨 get 방식에서 처리
+  const { nid, content } = req.body;
+  const sql = 'insert into news_reply(content, nid, redate) values(?, ?, sysdate())';
+  const params = [content, nid];
+  conn.query(sql, params, (err) => {
+    if(err) console.log(err)
+    else res.status(201).send('create success~'); 
+  })
 });
+
+
 
 export default router;
