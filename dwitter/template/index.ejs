@@ -1,3 +1,4 @@
+<!-- index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,34 +24,33 @@
     </form>
 
     <!-- tweet list -->
-    <% renderList.forEach((dwitter) => { %>
+    <% for(i=0; i<list.length; i++){ %>
     <div style="border: 1px solid gray; margin-top: 10px; width: 50%">
-      <%= dwitter.pid %>
-      <span style="float: right; cursor: pointer" onclick="remove('<%= dwitter.pid %>')">𝗑&nbsp;</span>
-      <span style="float: right; cursor: pointer" onclick="updateToggle('<%= dwitter.pid %>')">✎&nbsp;</span>
+      <span style="float: right; cursor: pointer" onclick="remove('<%= list[i].id %>')">𝗑&nbsp;</span>
+      <span style="float: right; cursor: pointer" onclick="updateToggle('<%= list[i].id  %>')">✎&nbsp;</span>
       <img
         style="clear: both"
         src="https://lh3.google.com/u/0/ogw/AKPQZvz2HmNjcwAEPNQlku9rD9iZkhoLuN9oOZVOKW5U=s64-c-mo"
       />
-      <span>[<%= dwitter.name %>]</span>
-      <span><a href="/dwitter/<%= dwitter.id %>">@<%= dwitter.id %></a></span>
-      <span><%= dwitter.date %></span>
-      <div><%= dwitter.content %></div>
+      <span>[<%= list[i].name %>]</span>
+      <span><a href="/dwitter/<%= list[i].id %>">@<%= list[i].id %></a></span>
+      <span><%= list[i].date %></span>
+      <div><%= list[i].content %></div>
 
-      <div id="updateForm_<%= dwitter.pid %>" style="display: none">
-        <input type="text" id="content_<%= dwitter.pid %>" style="width: 80%" />
-        <button type="button" onclick="update('<%= dwitter.pid %>')">Update</button>
+      <div id="updateForm_<%= list[i].id %>" style="display: none">
+        <input type="text" id="content_<%= list[i].id %>" style="width: 80%" />
+        <button type="button" onclick="update('<%= list[i].id %>')">Update</button>
       </div>
     </div>
-    <% }); %>
+    <% } %>
 
     <script>
       // remove delete
-      function remove(pid) {
+      function remove(id) {
         fetch('/dwitter', {
           method: 'delete',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ pid: pid }),
+          body: JSON.stringify({ id: id }),
         })
           .then(result => {
             if (result.status === 204) {
@@ -76,12 +76,12 @@
       } */
 
       // update
-      function update(pid) {
-        const updateText = document.querySelector('#content_' + pid).value;
+      function update(id) {
+        const updateText = document.querySelector('#content_' + id).value;
         fetch('/dwitter', {
           method: 'put',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ pid: pid, content: updateText }),
+          body: JSON.stringify({ id: id, content: updateText }),
         })
           .then(result => {
             if (result.status === 204) {
