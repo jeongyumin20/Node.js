@@ -2,15 +2,15 @@
 
 import mysql from 'mysql2';
 
-const dbInfo = {
+const pool = mysql.createPool ({
 host : 'localhost',
 port : '3306',
 user : 'root',
 password : 'dovmf1010',
 database : 'hrdb2019'
-};
+});
 
-const db = {
+/* const db = {
 init : function() {
   return mysql.createConnection(dbInfo);
 },
@@ -20,6 +20,6 @@ connect : function(conn) {
       else console.log('mysql 연결 성공');
     });
   }
-};
+}; */
 
-export default db;
+export const db = pool.promise(); // pool 안에 있는 것들을 promise 
