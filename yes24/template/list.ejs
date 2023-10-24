@@ -1,4 +1,3 @@
-<!-- list.ejs -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -129,18 +128,14 @@
       bestSellerCategory('BestSeller', '1');
 
       function bestSellerCategory(categoryName, page) {
-        const url = '/' + categoryName + '/' + page;
+        const url = '/' + categoryName + '/' + page
         fetch(url)
-          .then(response => response.json())
-          .then(bestSellerList => {
-            // alert(JSON.stringify(bestSellerList));
+          .then((response) => response.json())
+          .then(bookList => {
+            // alert(JSON.stringify(bookList));
             const output = `
-            <h2 class="title">${bestSellerList.title}</h2>
-            
-            ${bestSellerList.list
-              .map(
-                book =>
-                  `
+            ${bookList.map(book => `
+                <h2 class="title">${book.bs_title}</h2>
                 <div class="book_wrap">
                   <div>
                     <img src="${book.url}">
@@ -151,7 +146,7 @@
                     <div class="book_info">
                       <p>${book.author} 저 / ${book.translator} 역 |</p>
                       <p class="book_pub">${book.publisher} |</p>
-                      <p class="book_date">${book.pdata}</p>
+                      <p class="book_date">${book.pdate}</p>
                     </div>
                     <div class="book_price">
                       <p>${book.price}</p>
@@ -159,10 +154,7 @@
                     </div>
                   </div>
                 </div>
-
-              `
-              )
-              .join('\n')}
+              `).join('\n')}
             `;
             document.querySelector('#list').innerHTML = output;
           })

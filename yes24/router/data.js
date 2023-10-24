@@ -1,4 +1,4 @@
-// data.js
+/* // data.js
 const bestSellerList = {
   title: '국내도서 종합 베스트',
   list: [
@@ -11,7 +11,7 @@ const bestSellerList = {
       author: '벤저민 하디',
       translator: '최은아',
       publisher: '상상스퀘어',
-      pdata: '2023년 8월',
+      pdate: '2023년 8월',
       price: '19800',
       dc: 10,
     },
@@ -24,7 +24,7 @@ const bestSellerList = {
       author: '벤저민 하디',
       translator: '최은아',
       publisher: '상상스퀘어',
-      pdata: '2023년 8월',
+      pdate: '2023년 8월',
       price: '19800',
       dc: 10,
     },
@@ -38,12 +38,12 @@ const realTimeBestSellerList = {
       bid: 101,
       // title: '국내도서 실시간 베스트',
       url: 'https://image.yes24.com/goods/122851581/L',
-      bname: ' ELLE 엘르 B형 (여성월간) : 11월 [2023]',
+      bname: 'ELLE 엘르 B형 (여성월간) : 11월 [2023]',
       bname_comment: 'ELLE 엘르 11월 : BTS',
       author: 'HEARST JOONGANG',
       translator: '최은아',
       publisher: '허스트중앙 편집부',
-      pdata: '2023년 10월',
+      pdate: '2023년 10월',
       price: '12230',
       dc: 10,
     },
@@ -62,7 +62,7 @@ const dayBestSellerList = {
       author: '송길영',
       translator: '최은아',
       publisher: '교보문고',
-      pdata: '2023년 09월',
+      pdate: '2023년 09월',
       price: '18900',
       dc: 10,
     },
@@ -100,7 +100,7 @@ const hotPriceBestSeller = {
       author: '편집부',
       translator: '최은아',
       publisher: '북엔',
-      pdata: '2023년 09월',
+      pdate: '2023년 09월',
       price: '6900',
       dc: 10,
     },
@@ -119,7 +119,7 @@ const steadySellerList = {
       author: '김호연',
       translator: '최은아',
       publisher: '나무옆의자',
-      pdata: '2021년 04월',
+      pdate: '2021년 04월',
       price: '12600',
       dc: 10,
     },
@@ -134,3 +134,4 @@ export {
   hotPriceBestSeller,
   steadySellerList,
 };
+ */
