@@ -33,6 +33,15 @@ router.post('/', (req, res, next) => {
   })
 });
 
-
+router.delete('/', (req, res, next) => {
+  const { rid } = req.body;
+  const sql = 'delete from news_reply where rid =?';
+  conn.query(sql, rid, (err) => {
+    if(err) console.log(err)   
+    else {
+      res.status(204).send('success')
+    }
+  }); 
+});
 
 export default router;
