@@ -1,7 +1,7 @@
 // app.js
 import express from 'express';
-import newsRouter from './router/news.js';
-import replyRouter from './router/reply.js';
+import newsRouter from './router/newsRouter.js';
+import replyRouter from './router/replyRouter.js';
 
 const app = express();
 
