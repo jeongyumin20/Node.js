@@ -1,24 +1,17 @@
 // steadySeller.js
 import express from 'express';
-import ejs from 'ejs';
+/* import ejs from 'ejs';
 import * as list from './data.js';
 import dbConfig from '../db/database.js';
 
 const conn = dbConfig.init()
-dbConfig.connect(conn);
+dbConfig.connect(conn); */
+
+import * as yesController from '../controller/yesController.js'
 
 
 const router = express.Router();
 
-router.get('/:page', (req, res, next) => {
-  const sql = `select bs_title, bid, bname, bname_comment, author, translator, publisher, pdate, price, dc, url, yb.bs_id
-                from yes24_books yb right outer join yes24_bs_category yc 
-                on yb.bs_id = yc.bs_id where yc.bs_id = 'SS'`;
-
-  conn.query(sql, (err, rows, fields) => {
-  if(err) console.log(err)
-  else res.json(rows);
-  })
-});
+router.get('/:page', yesController.getSteady);
 
 export default router;
