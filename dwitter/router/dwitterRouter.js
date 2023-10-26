@@ -26,7 +26,6 @@ router.post('/', dwitterController.create);
 //          /dwitter?id=자신의 아이디
 router.get('/:id', dwitterController.getDwitter);
 
-
 // 4. PUT : /dwitter/:id - My Dwitter update
 router.put('/', dwitterController.update);
 

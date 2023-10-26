@@ -12,11 +12,32 @@
     <ul>
       <li><a href="/dwitter">All Dwitter</a></li>
       <li><a href="#">My Dwitter</a></li>
-      <li><a href="#">Login</a></li>
+      <li><a href="#" onclick="loginToggle()">Login</a> 
+        / <a href="#" onclick="signUpToggle()">Signup</a> 
+      </li>
     </ul>
 
+    <form name="loginForm" action="/login" method="post" style="display: none; border: 1px solid lightgray; margin-bottom: 10px; padding: 0 10px;">
+      <h4>Login Form</h4>
+      <input type="text" name="id" id="id" placeholder="id" style="width: 50%; background: aliceblue; border: 1px solid lightgray;">
+      <input type="password" name="pass" id="pass" placeholder="password" style="width: 50%; background: aliceblue;  border: 1px solid lightgray;">
+      <button type="submit">Login</button>
+      <button type="reset">Reset</button><br><br>
+    </form>
+
+    <form name= "signUpForm" action="/signup" method="post" style="display: none; border: 1px solid lightgray; margin-bottom: 10px; padding: 0 10px;">
+      <h4>SignUp Form</h4>
+      <input type="text" name="id" id="sid" placeholder="id" style="width: 50%; background: aliceblue; border: 1px solid lightgray;">
+      <input type="password" name="pass" id="spass" placeholder="password" style="width: 50%; background: aliceblue;  border: 1px solid lightgray;">
+      <input type="text" name="name" id="sname" placeholder="name" style="width: 50%; background: aliceblue;  border: 1px solid lightgray;">
+      <input type="text" name="content" id="scontent" placeholder="content" style="width: 50%; border: 1px solid lightgray;">
+      <button type="submit">Signup</button>
+      <button type="reset">Reset</button><br><br>
+    </form>
+
+
     <!-- post 입력 form  -->
-    <form action="/dwitter" name="contentForm" method="post" style="border: 2px solid aliceblue">
+    <form action="/dwitter" name="contentForm" method="post">
       <input type="text" name="id" placeholder="id" />
       <input type="text" name="name" placeholder="name" />
       <input type="text" name="content" style="width: 70%" />
@@ -45,6 +66,46 @@
     <% } %>
 
     <script>
+      // loginForm toggle
+      function loginToggle() {
+        const display = loginForm.style.display;
+        const id = document.querySelector('#id')
+        const pass = document.querySelector('#pass')
+
+
+        if(display === 'none') {
+          loginForm.style.display = 'block';
+          id.focus();
+          // document.querySelector('#id').focus();
+        } else {
+          loginForm.style.display = 'none';
+          id.value = '';
+          pass.value = '';
+          // document.querySelector('#id').value = '';
+          // document.querySelector('#pass').value = '';
+        }
+      }
+
+      // signUpForm toggel
+      function signUpToggle() {
+        const display = signUpForm.style.display;
+        const sid = document.querySelector('#sid')
+        const spass = document.querySelector('#spass')
+        const sname = document.querySelector('#sname')
+        const scontent = document.querySelector('#scontent')
+
+        if(display === 'none') {
+          signUpForm.style.display = 'block';
+          sid.focus()
+        } else {
+          signUpForm.style.display = 'none';
+          sid.value = '';
+          spass.value = '';
+          sname.value = '';
+          scontent.value = '';
+        }
+      }
+
       // remove delete
       function remove(id) {
         fetch('/dwitter', {
