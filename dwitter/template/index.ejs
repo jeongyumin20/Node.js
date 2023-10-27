@@ -148,6 +148,8 @@
             if (result.status === 204) {
               alert('업데이트 성공 ✌🏻');
               window.location.reload();
+            } else if (result.status === 400) {
+              alert('로그인 후 수정이 가능합니다');
             }
           })
           .catch(console.error)

@@ -1,0 +1,12 @@
+// Auth_Process.txt
+
+✔︎ 로그인 인증 절차
+
+Client -------<<로그인>>---------→  Server[id﹒pass] -----<<id>>-------------→  DB(MySQL)
+                                    bcrpt.compare()  ←----<<pass>>------------  DB(MySQL)
+                               ---<< result : true >>---
+ 쿠키저장  ←---------------- res [ JWT 생성 + 쿠키 열차 탑승 🚃 ]
+                            JWT : Header ﹒ Payload ﹒ Signiture
+
+                          ( npm i jsonwebtoken ﹒ npm i cookie-parser )
+ 새로운요청 + 쿠키(JWT) -------→ req.cookies(JWT) 가져온다
