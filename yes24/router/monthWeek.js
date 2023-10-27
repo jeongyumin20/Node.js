@@ -8,10 +8,10 @@ const conn = dbConfig.init()
 dbConfig.connect(conn);
  */
 
-import * as yesController from '../controller/yesController.js'
+import * as monthController from '../controller/monthWeekController.js'
 
 const router = express.Router();
 
-router.get('/:page', yesController.getMonth);
+router.get('/:page', monthController.getMonth);
 
 export default router;

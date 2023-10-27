@@ -7,10 +7,10 @@ import dbConfig from '../db/database.js';
 const conn = dbConfig.init()
 dbConfig.connect(conn); */
 
-import * as yesController from '../controller/yesController.js'
+import * as realtimeController from '../controller/realTimeController.js'
 
 const router = express.Router();
 
-router.get('/:page', yesController.getRealTime);
+router.get('/:page', realtimeController.getRealTime);
 
 export default router;

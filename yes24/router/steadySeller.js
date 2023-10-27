@@ -7,11 +7,11 @@ import dbConfig from '../db/database.js';
 const conn = dbConfig.init()
 dbConfig.connect(conn); */
 
-import * as yesController from '../controller/yesController.js'
+import * as steadyController from '../controller/steadySellerController.js'
 
 
 const router = express.Router();
 
-router.get('/:page', yesController.getSteady);
+router.get('/:page', steadyController.getSteady);
 
 export default router;

@@ -7,12 +7,11 @@ import dbConfig from '../db/database.js';
 const conn = dbConfig.init()
 dbConfig.connect(conn); */
 
-import * as yesController from '../controller/yesController.js'
+import * as bestController from '../controller/bestSellerController.js'
 
 const router = express.Router();
 
-router.get('/', yesController.getAll);
-
-router.get('/:page', yesController.getBest);
+router.get('/', bestController.getList); // getList
+router.get('/:page', bestController.getBest); // getListPage
 
 export default router;

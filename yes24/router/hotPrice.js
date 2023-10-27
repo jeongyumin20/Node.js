@@ -8,10 +8,10 @@ const conn = dbConfig.init()
 dbConfig.connect(conn);
  */
 
-import * as yesController from '../controller/yesController.js';
+import * as hotpriceController from '../controller/hotPriceController.js';
 
 const router = express.Router();
 
-router.get('/:page', yesController.getHotPrice);
+router.get('/:page', hotpriceController.getHotPrice);
 
 export default router;

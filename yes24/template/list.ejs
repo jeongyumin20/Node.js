@@ -134,8 +134,8 @@
           .then(bookList => {
             // alert(JSON.stringify(bookList));
             const output = `
+            <h2 class="title">${bookList[0].bs_title}</h2>
             ${bookList.map(book => `
-                <h2 class="title">${book.bs_title}</h2>
                 <div class="book_wrap">
                   <div>
                     <img src="${book.url}">
@@ -149,7 +149,7 @@
                       <p class="book_date">${book.pdate}</p>
                     </div>
                     <div class="book_price">
-                      <p>${book.price}</p>
+                      <p>${book.price}원</p>
                       <p>(${book.dc}% 할인)</p>
                     </div>
                   </div>

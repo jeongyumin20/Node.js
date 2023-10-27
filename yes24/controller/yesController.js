@@ -1,11 +1,11 @@
 // yesController.js
 
+/*
 import ejs from 'ejs';
 import * as yesRepository from '../repository/yesRepository.js';
 
 
-
-// bestseller
+ // bestseller
 export async function getAll(req, res) {
   ejs
   .renderFile('./template/list.ejs', {})
@@ -18,11 +18,13 @@ export async function getBest(req, res) {
   res.json(rows[0]);
 }
 
+
 // realTime
 export async function getRealTime(req, res) {
   const rows = await yesRepository.getRealTime();
   res.json(rows[0]);
 }
+
 
 // daybestseller
 export async function getDay(req, res) {
@@ -30,11 +32,13 @@ export async function getDay(req, res) {
   res.json(rows[0]);
 }
 
+
 // getMonth
 export async function getMonth (req, res) {
   const rows = await yesRepository.getMonth();
   res.json(rows[0]);
 }
+
 
 // getHotPrice
 export async function getHotPrice (req, res) {
@@ -42,8 +46,9 @@ export async function getHotPrice (req, res) {
   res.json(rows[0]);
 }
 
-// 
+// getSteady
 export async function getSteady (req, res) {
   const rows = await yesRepository.getSteady();
   res.json(rows[0]);
 }
+ */
