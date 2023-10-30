@@ -12,6 +12,7 @@ import * as bestController from '../controller/bestSellerController.js'
 const router = express.Router();
 
 router.get('/', bestController.getList); // getList
-router.get('/:page', bestController.getBest); // getListPage
+router.get('/:page', bestController.getListPage); // getListPage
+// router.get('/login', bestController.getListLogin); // getListLogin
 
 export default router;

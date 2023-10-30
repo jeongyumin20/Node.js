@@ -8,24 +8,49 @@
       * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
 
       body {
+        margin-top: 10px;
         padding: 30px;
       }
 
+      button {
+        border: none;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      img {
+        display: block;
+        width: 10%;
+      }
+
+      h1 {
+        margin: 0 0 5px 0;
+        font-size: 1rem;
+        color: darkkhaki;
+        text-align: right;
+      }
+
       ul {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 80%;
-        height: 40px;
-        margin-bottom: 30px;
-        border: 1px solid lightgray;
         list-style: none;
       }
 
-      li {
+      ul.nav_bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 40px;
+        /* margin-bottom: 40px; */
+        border: 1px solid lightgray;
+        border-bottom: none;
+        border-radius: 5px;
+      }
+
+      ul.nav_bar li {
         width: 100%;
         height: 100%;
         text-align: center;
@@ -34,76 +59,131 @@
         transition: all 0.3s;
       }
 
-      li:not(:last-child) {
+      ul.nav_bar li:not(:last-child) {
         border-right: 1px solid rgb(195, 207, 219);
       }
 
-      li:hover {
+      ul.nav_bar li:hover {
         background-color: darkkhaki;
         color: white;
         border-left-color: white;
         border-right-color: white;
       }
 
-      .book_wrap {
+      ul.nav_bar li span {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      #list .title {
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border-top: 1px solid darkkhaki;
+        border-bottom: 1px solid darkkhaki;
+        background-color: #dbd8b1;
+        font-size: 1.2rem;
+        color: rgb(77, 75, 45);
+        text-align: center;
+      }
+
+      #list .book_wrap {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        padding: 20px 0;
+        padding: 30px;
         border-bottom: 1px solid lightgray;
       }
 
-      .book_wrap div:first-child {
+/*       #list .book_wrap div:first-child {
         flex: 0 1 10%;
         margin-right: 20px;
+      } */
+
+      #list .book_wrap .img {
+        flex: 0 1 15%;
       }
 
-      .book_wrap img {
+      #list .book_wrap img {
         width: 100%;
       }
 
-      .bookList {
+      #list .bookList {
+        flex: 0 1 65%;
         padding: 15px 0;
       }
 
-      .book_comment {
+      #list .bookList b {
+        font-size: 1.2rem;
+      }
+
+      #list .book_comment {
+        margin-top: 8px;
         font-size: 0.7rem;
         color: lightgray;
       }
 
-      .book_info,
-      .book_price {
+      #list .book_info,
+      #list .book_price {
         display: flex;
         align-items: center;
       }
 
-      .book_info {
+      #list .book_info {
         margin: 8px 0;
         font-size: 0.9rem;
       }
 
-      .book_info p,
-      .book_price p {
+      #list .book_info p,
+      #list .book_price p {
         margin-right: 3px;
       }
 
-      .book_date {
+      #list .book_date {
         color: gray;
       }
 
-      .book_price p:first-child {
+      #list .book_price p:first-child {
         font-weight: bolder;
       }
 
-      .book_price p:last-child {
+      #list .book_price p:last-child {
         font-size: 0.7rem;
         color: gray;
+      }
+
+      #list .book_btn button {
+        transition: all 0.3s;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+
+      #list .book_btn button:hover {
+        color: darkkhaki;
+      }
+
+      .show {
+        display: block;
+      }
+
+      .nav_click {
+        background-color: darkkhaki;
+        color: white;
+        border-left-color: white;
+        border-right-color: white;
       }
     </style>
   </head>
   <body>
-    <ul>
+    <div class="yes24_logo">
+      <a href="/BestSeller">
+        <img src="https://image.yes24.com/sysimage/renew/gnb/logoN4.png" alt="yes24 logo">
+      </a>
+    </div>
+    <!-- <h1>yes24 도서현황</h1> -->
+    <ul class="nav_bar">
       <li onclick="bestSellerCategory('BestSeller', '1')">
-        <span class="text">종합</span>
+        <span class="text nav_click">종합</span>
       </li>
       <li onclick="bestSellerCategory('RealTimeBestSeller', '1')">
         <span class="text">실시간</span>
@@ -122,9 +202,20 @@
       </li>
     </ul>
 
+
     <div id="list"></div>
 
     <script>
+      document.querySelectorAll('.nav_bar li').forEach(li => {
+        li.addEventListener('click', e => {
+          document.querySelectorAll('.nav_bar .text').forEach(text => {
+            if(text !== e.target) text.classList.remove('nav_click')
+            else e.target.classList.add('nav_click')
+          });
+          // e.target.parentElement.classList.toggle('nav_click')
+        });
+      });
+
       bestSellerCategory('BestSeller', '1');
 
       function bestSellerCategory(categoryName, page) {
@@ -137,9 +228,9 @@
             <h2 class="title">${bookList[0].bs_title}</h2>
             ${bookList.map(book => `
                 <div class="book_wrap">
-                  <div>
+                  <div class="img">
                     <img src="${book.url}">
-                    </div>
+                  </div>
                   <div class="bookList">
                     <b>${book.bname}</b>
                     <p class="book_comment">${book.bname_comment}</p>
@@ -153,12 +244,27 @@
                       <p>(${book.dc}% 할인)</p>
                     </div>
                   </div>
+                  <div class="book_btn">
+                    <button type="button">담기</button>
+                    <button type="button">구매</button>
+                  </div>
                 </div>
               `).join('\n')}
             `;
             document.querySelector('#list').innerHTML = output;
           })
           .catch();
+      }
+
+      function addBookToggle() {
+        const display = document.querySelector('.addBook').classList.contains('show')
+
+        if(display) {
+          document.querySelector('.addBook').classList.remove('show');
+        } else {
+          document.querySelector('.addBook').classList.add('show');
+          document.querySelector('#bname').focus();
+        }
       }
     </script>
   </body>

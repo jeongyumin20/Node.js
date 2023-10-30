@@ -1,4 +1,4 @@
-// steadyController.js
+// steadySellerController.js
 
 import ejs from 'ejs';
 import * as yesRepository from '../repository/yesRepository.js';

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login</title>
+  <style>
+    
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: rgb(237, 237, 237);
+    }
+
+    h2 {
+      margin: 0 0 5px 0;
+    }
+
+    input {
+      /* width: 70%; */
+      margin-bottom: 5px;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 3px 8px;
+      background-color: white;
+      border: 1px solid rgb(212, 210, 210);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      color: white;
+      border-color: rgb(190, 222, 233);
+      background-color: rgb(84, 98, 113);
+    }
+
+    .listPage {
+      color: rgb(84, 98, 113);
+    }
+
+    .login_wrap {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      left: calc(50% - 250px);
+      top: calc(50% - 150px);
+    
+      width: 500px;
+      height: 300px;
+      padding: 20px;
+      text-align: center;
+    }
+
+
+    .loginForm {
+      display: flex;
+      margin: 0 auto;
+    }
+
+    .input_wrap {
+      margin-right: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    
+
+
+/*     .join_wrap {
+      display: none;
+    } */
+    
+/*     .input_wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+ */
+  </style>
+</head>
+<body>
+
+  <div class="login_wrap">
+    <div>
+      <h2><a class="listPage" href="/BestSeller">yes24</a> 로그인</h2>
+      <a href="/join"><button type="button"> yes24 회원가입 click! 📮</button></a>
+    </div>
+    <form action="/" name="loginForm" method="post" class="loginForm">
+      <div class="input_wrap">
+        <div class="field">
+          <label for="id"></label>
+          <input type="text" name="id" id="id" placeholder="id">
+        </div>
+        <div class="field">
+          <label for="password"></label>
+          <input type="password" name="pass" id="pass" placeholder="password">
+        </div>
+      </div>
+      <button type="submit">login</button>
+<!--       <p>
+        회원가입하러 가기 📮 
+        <button type="button"><a href="/join">join</a></button>
+      </p> -->
+    </form>
+  </div>
+    
+<!--   <div class="join_wrap" style="display: none;">
+    <h2>회원가입</h2>
+    <form action="/join" name="joinForm" method="post"> 
+      <p>
+        <label for="id">id</label>
+        <input type="text" name="id" id="jid" placeholder="id">
+      </p>
+      <p>
+        <label for="password">password</label>
+        <input type="password" name="pass" id="jpass" placeholder="password">
+      </p>
+      <p>
+        <label for="name">name</label>
+        <input type="text" name="name" id="name" placeholder="name">
+      </p>
+      <button type="submit">join</button>
+      <button type="reset">reset</button>
+    </form>
+  </div> -->
+
+  <script>
+/*     function joinDisplay() {
+      const join_wrap = document.querySelector('.join_wrap');
+      const login_wrap = document.querySelector('.login_wrap');
+      // const display = document.querySelector('.join_wrap').style.display;
+
+      if(display === 'none') {
+        join_wrap.style.display = 'block';
+        login_wrap.style.display = 'none';
+      }
+    } */
+  </script>
+</body>
+</html>
