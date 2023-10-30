@@ -46,6 +46,11 @@ export async function login(req, res) {
   }
 }
 
+function creatToken(id) {
+  return jwt.sign({id : id}, 'LjTr6T7!25}U')
+}
+
+
 // logout 처리
 export async function logout(req, res) {
   const token = req.cookies.x_auth
@@ -54,10 +59,6 @@ export async function logout(req, res) {
     res.cookie('x_auth', token, {maxAge : 1, httpOnly : true})
       .status(200).end()
   }
-}
-
-function creatToken(id) {
-  return jwt.sign({id : id}, 'LjTr6T7!25}U')
 }
 
 // book update ( 도서 추가 )
