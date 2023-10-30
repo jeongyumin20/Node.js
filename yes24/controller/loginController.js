@@ -42,7 +42,7 @@ export async function login(req, res) {
     res.cookie('x_auth', token, {maxAge: 60*60*1000, httpOnly : true})
       .status(200).redirect('/root')
   } else {
-    res.send(403).end()
+    // res.send(403).end()
   }
 }
 
