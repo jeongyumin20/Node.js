@@ -1,0 +1,74 @@
+<!-- signup.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>회원가입</h1>
+  <!-- <form name="signupForm" action="/signup" method="post"> -->
+  <div>
+    <ul>
+      <li>
+        <label for="id">아이디</label>
+        <input type="text" name="id" id="id">
+      </li>
+      <li>
+        <label for="pass">패스워드</label>
+        <input type="password" name="pass" id="pass">
+      </li>
+      <li>
+        <label for="name">이름</label>
+        <input type="text" name="name" id="name">
+      </li>
+      <li>
+        <button onclick="createJoin()">Signup</button>
+        <button type="reset">Reset</button>
+        <!-- <button type="submit">Signup</button> -->
+      </li>
+    </ul>
+    <a href="/">Home</a>
+  </div>
+  <!-- </form> -->
+
+  <script>
+    function createJoin() {
+      const id = document.querySelector('#id').value;
+      const pass = document.querySelector('#pass').value;
+      const name = document.querySelector('#name').value;
+
+      fetch('/signup', {
+        method : 'post',
+        headers : {'content-type' : 'application/json'},
+        body : JSON.stringify({id, pass, name})
+      })
+      .then(result => {
+        if( result.status === 204 ) {
+          alert('회원가입에 성공했습니다 🌼')
+          window.location.reload()
+        } else {
+          alert('회원가입에 실패 했습니다 🔥')
+        }
+      })
+      .catch(console.error)
+    }
+  </script>
+</body>
+</html>
